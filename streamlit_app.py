@@ -8,15 +8,18 @@ import streamlit as st
 from mplsoccer import VerticalPitch
 
 
-st.set_page_config("Remates | Liga Profesional 2021 | Argentina", layout="wide")
-
-"""
-### Remates | Liga Profesional 2021 | Argentina
-Todos los remates en el torneo, con la posibilidad de filtrar por distintos criterios
-
-(*por ej. [desde dónde y cuánto le patean a River](), [todos los remates efectuados por Boca en la era Battaglia](), o [cualquier otra combinación]()*).
-"""
-
+st.set_page_config(
+    "Remates | Liga Profesional 2021 | Argentina",
+    layout="wide",
+    menu_items={
+        "Get Help": None,
+        "Report a bug": "https://github.com/matiasb/pate.ar/issues",
+        "About": (
+            """### pate.ar  
+                     Remates del fútbol argentino"""
+        ),
+    },
+)
 
 BASE_URL = st.config.get_option("server.baseUrlPath")
 
@@ -30,6 +33,16 @@ SHOT_OFF_TARGET_COLOR = "lightgrey"
 SHOT_ON_TARGET_COLOR = "dimgrey"
 SHOT_GOAL_COLOR = "green"
 FONT_COLOR = "black"
+
+st.markdown(
+    """
+### Remates | Liga Profesional 2021 | Argentina
+Todos los remates en el torneo, con la posibilidad de filtrar por distintos criterios  
+(*por ej. [desde dónde y cuánto le patean a River]({base_url}?team=&rival=River+Plate&player=&rounds=1%2C21&goals_only=0), [todos los remates efectuados por Boca en la era Battaglia]({base_url}?team=Boca+Juniors&rival=&player=&rounds=7%2C21&goals_only=0), o [cualquier otra combinación]({base_url}?team=&rival=&player=Juli%C3%A1n+%C3%81lvarez&rounds=1%2C21&goals_only=0)*).
+""".format(
+        base_url=BASE_URL
+    )
+)
 
 
 @st.cache
@@ -306,4 +319,15 @@ for filter_key, (widget_type, kwargs, column_name) in filters_def.items():
 
 render_shots(shots, filters=widgets)
 permalink = generate_permalink(widgets)
-st.markdown("[Link para compartir este gráfico]({})".format(permalink))
+filters_str = " | ".join(
+    ["{}: {}".format(filters_def[k][1]["label"], v) for k, v in widgets.items() if v]
+)
+st.markdown(
+    """
+    **Filtros aplicados**  
+    {}  
+    [Link para compartir este gráfico]({})
+""".format(
+        filters_str, permalink
+    )
+)
