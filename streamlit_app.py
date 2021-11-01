@@ -38,7 +38,7 @@ st.markdown(
     """
 ### Remates | Liga Profesional 2021 | Argentina
 Todos los remates en el torneo, con la posibilidad de filtrar por distintos criterios  
-(*por ej. [desde dónde y cuánto le patean a River]({base_url}?team=&rival=River+Plate&player=&rounds=1%2C21&goals_only=0), [todos los remates efectuados por Boca en la era Battaglia]({base_url}?team=Boca+Juniors&rival=&player=&rounds=7%2C21&goals_only=0), o [cualquier otra combinación]({base_url}?team=&rival=&player=Juli%C3%A1n+%C3%81lvarez&rounds=1%2C21&goals_only=0)*).
+(*por ej. [desde dónde y cuánto le patean a River]({base_url}?team=&rival=River+Plate&player=&rounds=1%2C25&goals_only=0), [todos los remates efectuados por Boca en la era Battaglia]({base_url}?team=Boca+Juniors&rival=&player=&rounds=7%2C25&goals_only=0), o [cualquier otra combinación]({base_url}?team=&rival=&player=Juli%C3%A1n+%C3%81lvarez&rounds=1%2C25&goals_only=0)*).
 """.format(
         base_url=BASE_URL
     )
